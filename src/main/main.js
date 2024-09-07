@@ -6,7 +6,7 @@ const fs = require("node:fs");
 const jsonfile = require("jsonfile");
 const { authenticator } = require("otplib");
 
-const filePath = path.join(app.getAppPath(), "accounts.json");
+const filePath = path.join(app.getPath("appData"), "spaceauth", "accounts.json");
 
 let mainWindow;
 let tray;

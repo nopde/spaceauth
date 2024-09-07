@@ -1,0 +1,198 @@
+@font-face {
+    font-family: "Segoe Fluent Icons";
+    font-display: swap;
+    src: url("../fonts/fluent_icons.ttf");
+}
+
+.fluent-icons {
+    font-family: "Segoe Fluent Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-display: swap;
+    src: url("../fonts/inter.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    user-select: none;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    color-scheme: dark;
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    border: 1px solid rgb(52, 50, 56);
+}
+
+.titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    background-color: rgb(10, 10, 10);
+    -webkit-app-region: drag;
+}
+
+.titlebar p {
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.controls button {
+    -webkit-app-region: no-drag;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-bottom: 1px;
+    transition: all .1s ease;
+}
+
+.controls button:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.controls button:active {
+    background-color: rgba(255, 255, 255, .2);
+    transition: all .1s ease, background-color 0s;
+}
+
+.controls button[red]:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.topbar {
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 5px;
+    background-color: rgb(10, 10, 10);
+    border-bottom: 1px solid rgb(80, 80, 80);
+}
+
+.topbar button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    width: max-content;
+    height: max-content;
+    border: 1px solid rgb(80, 80, 80);
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .1s ease;
+}
+
+.topbar button:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.accounts {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.accounts .account {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    background-color: rgb(30, 30, 30);
+    border: 1px solid rgb(80, 80, 80);
+    cursor: pointer;
+    transition: all .1s ease;
+}
+
+.accounts .account:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+.accounts .account .account-info {
+    display: flex;
+    align-items: center;
+}
+
+.accounts .account .account-info p {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.accounts .account .account-controls {
+    display: flex;
+    align-items: center;
+}
+
+.accounts .account .account-controls button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 999px;
+    width: max-content;
+    height: max-content;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .1s ease;
+}
+
+.accounts .account .account-controls button:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.accounts .account .account-controls button span {
+    font-size: 14px;
+}

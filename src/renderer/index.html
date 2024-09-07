@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceAuth</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="titlebar">
+            <p>SpaceAuth</p>
+            <div class="controls">
+                <button id="minimize"><span class="fluent-icons">&#xE921</span></button>
+                <button id="quit" red><span class="fluent-icons">&#xE8BB</span></button>
+            </div>
+        </div>
+        <div class="topbar">
+            <button id="create" type="submit" ripple>
+                Add account
+                <span class="fluent-icons">&#xE710</span>
+            </button>
+        </div>
+        <div class="accounts"></div>
+    </div>
+    <div id="otp-display">
+        <p id="otp-code"></p>
+    </div>
+</body>
+
+<script src="js/index.js" type="module"></script>
+
+</html>

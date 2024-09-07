@@ -1,0 +1,39 @@
+{
+    "author": "nopde",
+    "repository": "https://github.com/nopde/spaceauth",
+    "name": "spaceauth",
+    "version": "0.0.1",
+    "description": "Windows TOTP Authenticator",
+    "license": "MIT",
+    "main": "src/main/main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "build": {
+        "appId": "com.nopde.spaceauth",
+        "productName": "SpaceAuth",
+        "icon": "icon.ico",
+        "win": {
+            "artifactName": "SpaceAuthSetup.exe",
+            "target": "nsis-web"
+        },
+        "nsisWeb": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        },
+        "directories": {
+            "output": "dist"
+        }
+    },
+    "devDependencies": {
+        "electron": "^30.1.2",
+        "electron-builder": "^24.13.3"
+    },
+    "dependencies": {
+        "electron-updater": "^6.3.0-alpha.6",
+        "jsonfile": "^6.1.0",
+        "otplib": "^12.0.1"
+    }
+}

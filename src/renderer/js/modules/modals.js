@@ -229,7 +229,7 @@ export function addAccountModal() {
 
         <form onsubmit="return false">
             <input class="modal-input" id="popup-account-name" type="text" placeholder="Account name" spellcheck="false" autocomplete="off" required>
-            <input class="modal-input" id="popup-issuer-name" type="text" placeholder="Issuer name" spellcheck="false" autocomplete="off" required>
+            <input class="modal-input" id="popup-issuer-name" type="text" placeholder="Issuer name" spellcheck="false" autocomplete="off">
             <input class="modal-input" id="popup-secret" type="text" placeholder="Secret" spellcheck="false" autocomplete="off" required>
             <button id="popup-clipboard" class="modal-button" type="button" ripple>Get data from clipboard</div>
             <button id="popup-confirm" class="modal-button" type="submit" ripple>Confirm</button>
@@ -239,7 +239,7 @@ export function addAccountModal() {
     const title = "Add account";
     let modalContainer = createModal(title, modalHTML);
 
-    const confirmButton = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("button#popup-confirm");
+    const form = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("form");
     const clipboardButton = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("button#popup-clipboard");
     const accountNameInput = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("input#popup-account-name");
     const issuerNameInput = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("input#popup-issuer-name");
@@ -257,7 +257,7 @@ export function addAccountModal() {
         }
     });
 
-    confirmButton.addEventListener("click", event => {
+    form.addEventListener("submit", event => {
         window.electronAPI.createAccount({ secret: secretInput.value, name: accountNameInput.value, issuer: issuerNameInput.value }).then(response => {
             if (response.success) {
                 modalContainer.dispatchEvent(new CustomEvent("close-modal"));

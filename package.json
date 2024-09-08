@@ -2,7 +2,7 @@
     "author": "nopde",
     "repository": "https://github.com/nopde/spaceauth",
     "name": "spaceauth",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Windows TOTP Authenticator",
     "license": "MIT",
     "main": "src/main/main.js",

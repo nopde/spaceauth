@@ -55,6 +55,7 @@ body {
     justify-content: space-between;
     height: 30px;
     background-color: rgb(10, 10, 10);
+    border-bottom: 1px solid rgb(80, 80, 80);
     -webkit-app-region: drag;
 }
 
@@ -97,13 +98,19 @@ body {
     background-color: rgb(255, 0, 0);
 }
 
+.controls button[red]:active {
+    background-color: rgb(255, 75, 75);
+    transition: all .1s ease, background-color 0s;
+}
+
 .topbar {
+    position: relative;
     height: max-content;
     display: flex;
     align-items: center;
     justify-content: end;
     padding: 5px;
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(15, 15, 15);
     border-bottom: 1px solid rgb(80, 80, 80);
 }
 
@@ -121,6 +128,7 @@ body {
     border: 1px solid rgb(80, 80, 80);
     outline: none;
     background-color: transparent;
+    backdrop-filter: blur(15px);
     cursor: pointer;
     transition: all .1s ease;
 }
@@ -157,6 +165,10 @@ body {
     background-color: rgb(40, 40, 40);
 }
 
+.accounts .account:has(button:hover):hover {
+    background-color: rgb(30, 30, 30);
+}
+
 .accounts .account .account-info {
     display: flex;
     align-items: center;
@@ -174,6 +186,7 @@ body {
 
 .accounts .account .account-controls button {
     position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,9 +195,9 @@ body {
     border-radius: 999px;
     width: max-content;
     height: max-content;
-    border: none;
+    border: 1px solid rgb(80, 80, 80);
     outline: none;
-    background-color: transparent;
+    background-color: rgb(30, 30, 30);
     cursor: pointer;
     transition: all .1s ease;
 }

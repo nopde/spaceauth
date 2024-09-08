@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu, nativeImage } = require("electron/main");
-const { dialog } = require("electron");
+const { dialog, clipboard } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const path = require("node:path");
 const fs = require("node:fs");
 const jsonfile = require("jsonfile");
 const { authenticator } = require("otplib");
+const { Jimp } = require("jimp");
+const jsQR = require("jsqr");
 
 const filePath = path.join(app.getPath("appData"), "spaceauth", "accounts.json");
 
@@ -50,6 +52,65 @@ function saveAccounts(accounts) {
             resolve();
         });
     });
+}
+
+function getClipboardImageURL() {
+    return clipboard.readImage().toDataURL();
+}
+
+async function processClipboardQR() {
+    try {
+        const imageURL = getClipboardImageURL();
+
+        if (imageURL.startsWith("data:image/")) {
+            const base64Data = imageURL.replace(/^data:image\/\w+;base64,/, "");
+            const imageBuffer = Buffer.from(base64Data, "base64");
+            const image = await Jimp.read(imageBuffer);
+            const imageData = {
+                data: image.bitmap.data,
+                width: image.bitmap.width,
+                height: image.bitmap.height
+            };
+
+            const qr = jsQR(imageData.data, imageData.width, imageData.height);
+            const otpParams = extractParamsFromURI(qr.data);
+
+            return otpParams;
+        }
+        else {
+            console.error("Invalid clipboard data.");
+            return null;
+        }
+    } catch (error) {
+        console.error("Error processing clipboard QR code:", error);
+        return null;
+    }
+}
+
+function extractParamsFromURI(uri) {
+    try {
+        if (!uri.startsWith("otpauth://totp/")) {
+            throw new Error("Invalid URI.");
+        }
+        
+        const queryString = uri.split("?")[1];
+        if (!queryString) {
+            throw new Error("No parameters found in URI.");
+        }
+
+        const params = new URLSearchParams(queryString);
+
+        const secret = params.get("secret");
+        const issuer = params.get("issuer");
+
+        return {
+            secret: secret,
+            issuer: issuer
+        };
+    } catch (error) {
+        console.error("Error extracting secret from URI:", error);
+        return null;
+    }
 }
 
 if (!gotTheLock) {
@@ -195,6 +256,10 @@ else {
 
         ipcMain.handle("load-accounts", (event) => {
             return loadAccounts();
+        });
+
+        ipcMain.handle("process-clipboard-qr", (event) => {
+            return processClipboardQR();
         });
 
         ipcMain.handle("quit", (event) => {

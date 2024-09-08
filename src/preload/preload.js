@@ -5,6 +5,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
     deleteAccount: (accountName) => ipcRenderer.invoke("delete-account", accountName),
     generateOtp: (secret) => ipcRenderer.invoke("generate-otp", secret),
     loadAccounts: () => ipcRenderer.invoke("load-accounts"),
+    processClipboardQR: () => ipcRenderer.invoke("process-clipboard-qr"),
     quit: () => ipcRenderer.invoke("quit"),
     minimize: () => ipcRenderer.invoke("minimize"),
     onResetScroll: (callback) => ipcRenderer.on("reset-scroll", callback)

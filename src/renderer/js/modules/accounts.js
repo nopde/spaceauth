@@ -8,11 +8,14 @@ export function updateAccountList() {
         accountsContainer.innerHTML = "";
         Object.keys(accounts).forEach(name => {
             const accountDiv = document.createElement("div");
+            const hasIssuer = accounts[name].issuer;
+            const issuerData = hasIssuer ? `<p class="account-issuer">${accounts[name].issuer}</p>` : ""
             accountDiv.toggleAttribute("ripple", true);
             accountDiv.className = "account";
             accountDiv.innerHTML = `
                 <div class="account-info">
-                    <p>${name}</p>
+                    <p class="account-name">${name}</p>
+                    ${issuerData}
                 </div>
                 <div class="account-controls">
                     <button class="delete-button" data-name="${name}" ripple>

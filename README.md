@@ -1,11 +1,5 @@
 # SpaceAuth
-TOTP Authenticator for Windows made in Electron.
-
-> [!IMPORTANT]
-> The only supported operating system is Windows.
-
-> [!WARNING]
-> Although it may run on Linux, full functionality of the program is not guaranteed.
+TOTP Authenticator made in Electron.
 
 ## Installation
 ```

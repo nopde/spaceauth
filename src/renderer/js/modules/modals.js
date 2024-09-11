@@ -297,7 +297,9 @@ export async function otpModal(secret) {
 
         <form onsubmit="return false">
             <p></p>
-            <button class="modal-button" ripple>Copy</button>
+            <button class="modal-button" ripple>
+                <span>Copy</span>
+            </button>
         </form>
     `;
 
@@ -306,6 +308,7 @@ export async function otpModal(secret) {
 
     const otpCodeParagraph = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("p");
     const copyButton = modalContainer.shadowRoot.querySelector("div.modal-content").shadowRoot.querySelector("button");
+    const copyButtonSpan = copyButton.querySelector("span");
 
     const otpCode = await window.electronAPI.generateOtp(secret);
 
@@ -313,6 +316,12 @@ export async function otpModal(secret) {
 
     copyButton.addEventListener("click", async () => {
         await navigator.clipboard.writeText(otpCodeParagraph.textContent);
+
+        copyButtonSpan.textContent = "Copied!";
+
+        setTimeout(() => {
+            copyButtonSpan.textContent = "Copy";
+        }, 1000);
     });
 }
 

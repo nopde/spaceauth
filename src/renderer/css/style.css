@@ -172,7 +172,6 @@ body {
 .accounts .account .account-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-left: 10px;
 }
 
